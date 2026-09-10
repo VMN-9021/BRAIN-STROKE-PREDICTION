@@ -47,16 +47,17 @@ brain-stroke-prediction/
 │
 ├── app.py
 ├── train_model.py
-├── requirements.txt
-├── README.md
+├── brain.csv
+├── req.txt
 │
-├── models/
-│   ├── stroke_model.pkl
-│   ├── scaler.pkl
-│   └── label_encoder.pkl
+├── index.html
+├── result.html
 │
-├── templates/
+├── stroke_model.pkl
+├── scaler.pkl
+├── preprocessor.pkl
+├── imputer.pkl
+├── encoders.pkl
 │
-├── static/
-│
-└── dataset/
+├── model_comparison.csv
+└── model_comparison.png

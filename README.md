@@ -1,12 +1,14 @@
 # Brain Stroke Prediction
 
-A machine learning-based web application developed to predict stroke-related outcomes using classification algorithms.
+A machine learning-based web application that predicts whether a person is likely to have a brain stroke or not based on the provided input features.
 
 ## Project Overview
 
-This project focuses on developing a web application for stroke prediction using Machine Learning. Multiple classification algorithms are explored and compared to identify a suitable model for the prediction task.
+This project focuses on developing a web application for brain stroke prediction using Machine Learning. The application analyzes the provided input data and uses trained classification models to predict whether the input indicates a stroke or a normal condition.
 
-The application provides a user-friendly web interface where input information can be provided and the trained model generates a prediction.
+Multiple classification algorithms are explored and compared to identify a suitable model for the prediction task.
+
+The application provides a user-friendly web interface where users can enter the required information and receive a prediction result.
 
 ## Machine Learning Algorithms
 

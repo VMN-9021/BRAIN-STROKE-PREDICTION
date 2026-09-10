@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Brain Stroke Prediction</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f4f7fb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #1f3c88;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input,
+        select {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #1f3c88;
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        .predict-btn {
+            width: 100%;
+            margin-top: 25px;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #1f3c88;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .predict-btn:hover {
+            background: #162d68;
+        }
+
+        .note {
+            margin-top: 20px;
+            text-align: center;
+            color: #777;
+            font-size: 13px;
+        }
+
+        @media (max-width: 650px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full-width {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Brain Stroke Prediction</h1>
+
+        <p class="subtitle">
+            Enter patient information to assess stroke risk
+        </p>
+
+        <form action="/predict" method="POST">
+
+            <div class="form-grid">
+
+                <!-- Gender -->
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+
+                    <select name="gender" id="gender" required>
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+
+                <!-- Age -->
+                <div class="form-group">
+                    <label for="age">Age</label>
+
+                    <input
+                        type="number"
+                        name="age"
+                        id="age"
+                        min="0"
+                        max="120"
+                        step="0.1"
+                        placeholder="Enter age"
+                        required
+                    >
+                </div>
+
+
+                <!-- Hypertension -->
+                <div class="form-group">
+                    <label for="hypertension">Hypertension</label>
+
+                    <select name="hypertension" id="hypertension" required>
+                        <option value="">Select</option>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+
+
+                <!-- Heart Disease -->
+                <div class="form-group">
+                    <label for="heart_disease">Heart Disease</label>
+
+                    <select name="heart_disease" id="heart_disease" required>
+                        <option value="">Select</option>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+
+
+                <!-- Ever Married -->
+                <div class="form-group">
+                    <label for="ever_married">Ever Married</label>
+
+                    <select name="ever_married" id="ever_married" required>
+                        <option value="">Select</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+
+                <!-- Work Type -->
+                <div class="form-group">
+                    <label for="work_type">Work Type</label>
+
+                    <select name="work_type" id="work_type" required>
+                        <option value="">Select Work Type</option>
+                        <option value="Private">Private</option>
+                        <option value="Self-employed">Self-employed</option>
+                        <option value="Govt_job">Government Job</option>
+                        <option value="children">Children</option>
+                        <option value="Never_worked">Never Worked</option>
+                    </select>
+                </div>
+
+
+                <!-- Residence Type -->
+                <div class="form-group">
+                    <label for="Residence_type">Residence Type</label>
+
+                    <select name="Residence_type" id="Residence_type" required>
+                        <option value="">Select</option>
+                        <option value="Urban">Urban</option>
+                        <option value="Rural">Rural</option>
+                    </select>
+                </div>
+
+
+                <!-- Glucose -->
+                <div class="form-group">
+                    <label for="avg_glucose_level">
+                        Average Glucose Level
+                    </label>
+
+                    <input
+                        type="number"
+                        name="avg_glucose_level"
+                        id="avg_glucose_level"
+                        step="0.01"
+                        min="0"
+                        placeholder="e.g. 120.50"
+                        required
+                    >
+                </div>
+
+
+                <!-- BMI -->
+                <div class="form-group">
+                    <label for="bmi">BMI</label>
+
+                    <input
+                        type="number"
+                        name="bmi"
+                        id="bmi"
+                        step="0.1"
+                        min="0"
+                        placeholder="e.g. 25.5"
+                        required
+                    >
+                </div>
+
+
+                <!-- Smoking Status -->
+                <div class="form-group">
+                    <label for="smoking_status">
+                        Smoking Status
+                    </label>
+
+                    <select
+                        name="smoking_status"
+                        id="smoking_status"
+                        required
+                    >
+                        <option value="">Select Smoking Status</option>
+                        <option value="formerly smoked">
+                            Formerly Smoked
+                        </option>
+
+                        <option value="never smoked">
+                            Never Smoked
+                        </option>
+
+                        <option value="smokes">
+                            Smokes
+                        </option>
+
+                        <option value="Unknown">
+                            Unknown
+                        </option>
+                    </select>
+                </div>
+
+
+                <!-- Button -->
+                <div class="full-width">
+
+                    <button
+                        type="submit"
+                        class="predict-btn"
+                    >
+                        Predict Stroke Risk
+                    </button>
+
+                </div>
+
+            </div>
+
+        </form>
+
+        <p class="note">
+            This system provides a machine-learning based risk prediction
+            and is not a medical diagnosis.
+        </p>
+
+    </div>
+
+</body>
+
+</html>
